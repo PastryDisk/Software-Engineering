@@ -1,0 +1,94 @@
+body {
+background-image: url("./images/OaklandUniversity.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+.body {
+text-align: center;
+}
+input {
+	border: solid 2px #217093;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background: #f3fafd;
+	width: 80%; 
+	height: 30px;
+	padding: 5px;
+}
+select {
+	border: solid 2px #217093;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background: #f3fafd;
+	width: 80%; 
+	height: 30px;
+	padding: 5px;
+}
+form {
+	margin-bottom: 0px;
+	line-height: 30px;
+	font-size: 16px; 
+	font-family: sans-serif;
+	font-weight: bold;
+	display: inline-block;
+	background: #F8F8F8;
+    padding: 20px 10px 20px 10px;
+    margin: 5px 5px 0px 5px;
+    border: 1px solid #eee;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+    width: 400px;
+	color: #217093;
+    }
+.SignUp {
+	line-height: 30px;
+	font-size: 16px; 
+	font-family: sans-serif;
+	font-weight: bold;
+	display: inline-block;
+	background: #4eb8dd;
+    padding: 20px 10px 20px 10px;
+    margin: 0px 5px 5px 5px;
+    border: 1px solid #4eb8dd;
+    border-radius: 0px 0px 10px 10px;
+    text-align: center;
+    width: 400px;
+	color: white;
+	}
+.SignUp:hover {
+	background: #217093;
+	border: 1px solid #217093;
+	transition: 0.3s;
+}
+.login {
+	border: 1px solid #4eb8dd;
+	background: #4eb8dd;
+    border-radius: 2px 2px;
+    padding: 5px;
+	font-size: 16px; 
+	font-family: sans-serif;
+	font-weight: bold;
+	color: white;
+}
+.login:hover {
+	background: #217093;
+	border: 1px solid #217093;
+	transition: 0.3s;
+}
+.format {
+	width: 200px;
+}
+.link {
+	text-decoration: none;
+    color: #4eb8dd;
+}
+.link:hover {
+	text-decoration: none;
+    color: #217093;
+	transition: 0.3s;
+}
+@media only screen and (max-width: 420px) {
+  form {
+    width: 95%;
+    }
+}

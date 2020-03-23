@@ -1,0 +1,49 @@
+<body>
+<div class="main">
+<div class="wrapperTable">
+<header>Create A Class</header>
+<form class="form" id="createClassForm" action="./php/CreateClassLogic.php" method="post">
+<label for="courseCode">CRN*</label>
+<br>
+<input class="input" type="text" name="courseCode" id="courseCode" onchange="clientValidation(this.form)" required>
+<br>
+<label for="courseID">Course ID*</label>
+<br>
+<input class="input" type="text" name="courseID" id="courseID" onchange="clientValidation(this.form)" required>
+<br>
+<label for="courseName">Course Name*</label>
+<br>
+<input class="input" type="text" name="courseName" id="courseName" onchange="clientValidation(this.form)" required>
+<br>
+<label for="courseStartDate1">1st Course Start Date*</label>
+<br>
+<input class="input" type="datetime-local" name="courseStartDate1" id="courseStartDate1" onchange="clientValidation(this.form)" required>
+<br>
+<label for="courseStartDate2">2nd Course Start Date</label>
+<br>
+<input class="input" type="datetime-local" name="courseStartDate2" id="courseStartDate2" onchange="clientValidation(this.form)">
+<br>
+<label for="courseStartDate3">3rd Course Start Date</label>
+<br>
+<input class="input" type="datetime-local" name="courseStartDate3" id="courseStartDate3" onchange="clientValidation(this.form)">
+<br>
+<label for="Duration">Duration*</label>
+<br>
+<input class="input" type="number" name="Duration" id="Duration" onchange="clientValidation(this.form)" placeholder="1-10 weeks" min="1" max="10" required>
+<br>
+<label for="courseLocation">Course Location*</label>
+<br>
+<select name="courseLocation" id="courseLocation" onchange="clientValidation(this.form)" required>
+<option value="EC">Engineering Center</option>
+  <option value="ODH">O-Dowd Hall</option>
+  <option value="DH">Dodge Hall</option>
+  <option value="TST">test</option>
+</select>
+<br>
+<br>
+<input class="input" type="hidden" name="createCourse" value="1">
+<input class="login" type="submit" value="Create Course" style="cursor: pointer" id="loginSubmit">
+</form>
+</div>
+</div>
+</body>

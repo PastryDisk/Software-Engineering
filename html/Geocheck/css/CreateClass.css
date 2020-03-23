@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+}
+header{
+    margin-top: 100px;
+    font-size: 32px;
+}
+.main {
+  margin-top: 0px;
+  height: 5480px; /* Used in this example to enable scrolling */
+}
+
+.column {
+  box-sizing: border-box;
+  float: left;
+  width: 25%;
+}
+    
+.GeocheckLogo {
+  margin-top: -20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+
+/* Start of Custom Scroll Bar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #777; 
+}
+/* End of Custom Scroll Bar */
+
+table, th, td{
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+th{
+    padding-right: 9vw;
+    background: #33bdef;
+    color: white;
+    text-align: center;
+}
+table{
+    border: 3px solid black;
+    display: inline-block;
+}
+.wrapperTable{
+    text-align: center;
+    overflow: scroll;
+    height: 100%;
+}
+.wrapperTable tr:nth-child(odd){
+    background: white;
+}
+.wrapperTable tr:nth-child(even){
+    background: #e8f4f8;
+}
+
+.body {
+text-align: center;
+}
+.input {
+	border: solid 2px #217093;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background: #f3fafd;
+	width: 80%; 
+	height: 30px;
+	padding: 5px;
+}
+.login {
+	border: 1px solid #4eb8dd;
+	background: #4eb8dd;
+        border-radius: 2px 2px;
+        padding: 5px;
+        margin-top: -30px;
+        margin-right: 20px;
+	font-size: 16px; 
+	font-family: sans-serif;
+	font-weight: bold;
+	color: white;
+}
+.login:hover {
+	background: #217093;
+	border: 1px solid #217093;
+	transition: 0.3s;
+}
+select {
+	border: solid 2px #217093;
+	border-radius: 4px;
+	box-sizing: border-box;
+	background: #f3fafd;
+	width: 80%; 
+	height: 30px;
+	padding: 5px;
+}
+.form {
+	margin-bottom: 0px;
+	line-height: 30px;
+	font-size: 16px; 
+	font-family: sans-serif;
+	font-weight: bold;
+	display: inline-block;
+	background: #F8F8F8;
+    padding: 20px 10px 20px 10px;
+    margin: 5px 5px 0px 5px;
+    border: 1px solid #eee;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+    width: 400px;
+	color: #217093;
+    }
+.createCourse {
+	line-height: 30px;
+	font-size: 16px; 
+	font-family: sans-serif;
+	font-weight: bold;
+	display: inline-block;
+	background: #4eb8dd;
+    padding: 20px 10px 20px 10px;
+    margin: 0px 5px 5px 5px;
+    border: 1px solid #4eb8dd;
+    border-radius: 0px 0px 10px 10px;
+    text-align: center;
+    width: 400px;
+	color: white;
+	}
+.createCourse:hover {
+	background: #217093;
+	border: 1px solid #217093;
+	transition: 0.3s;
+}
+
+.format {
+	width: 200px;
+
