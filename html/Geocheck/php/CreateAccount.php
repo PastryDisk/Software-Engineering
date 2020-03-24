@@ -15,7 +15,7 @@ if (!$conn)
 
 /*
 
-                REGISTRATION PAGE CODE
+       REGISTRATION PAGE CODE
 
 */
 
