@@ -1,9 +1,8 @@
-DELIMITER $$
-
-CREATE PROCEDURE attendanceLoop()
+CREATE DEFINER=`admin`@`%` PROCEDURE `attendanceLoop`(CRN int, startdate DATETIME, weeks int)
 BEGIN
 	DECLARE x INT;
     DECLARE y DATETIME;
+    SELECT DATE_FORMAT(y, '%Y-%m-%dT%H:%i');
     SET x = 1;
     SET y = startdate;
     
@@ -16,6 +15,4 @@ BEGIN
             SET y = DATE_ADD(y, INTERVAL 1 WEEK);
 		END IF;
 	END LOOP;
-END $$
-
-DELIMITER ;
+END
