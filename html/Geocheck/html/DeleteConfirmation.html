@@ -1,0 +1,19 @@
+<?php
+session_start();
+
+$crn = $_GET['id'];
+
+?>
+
+<div class="confirmBox">
+Are you sure you would like to delete this class?
+<p style="color:#808080"> Press a button!</p>
+<form action="./View-Classes-P-Updated.php" method="post">
+            <input type="hidden" name="deleteCancel" value="1">
+            <input type="submit" class="cancelBtn" value="Cancel">
+        </form>
+<form action="<?php echo './Delete-Confirmation.php?id='.$crn.''?>" method="post">
+            <input type="hidden" name="deleteConfirm" value="1">
+            <input type="submit" class="deleteBtn" value="Delete">
+        </form>
+</div>

@@ -1,0 +1,41 @@
+<?php
+session_start();
+$crn = $_GET['crn'];
+$course_code = $_GET['code'];
+$course_name = $_GET['course_name'];
+$location = $_GET['location'];
+
+?>
+<br><br><br><br><br>
+<div class="formFormat">
+<form class="form" action="<?php echo './Modify-Class-P.php?crn='.$crn.''?>" method ="post" name="classSearch">
+<table>
+  <tr>
+    <th colspan='3'><h4>You are Editing: <?php echo $course_name;?> #<?php echo $crn;?> </h4></th>
+  </tr>
+  <tr>
+    <td><label for="courseName">Course Name*</label></td>
+    <td colspan='2'><input class="input" type="text" name="courseName" id="courseName" placeholder="<?php echo $course_name;?>" value="<?php echo $course_name;?>" required></td>
+  </tr>
+  <tr>
+    <td><label for="courseCode">Course Code*</label></td>
+    <td colspan='2'><input class="input" type="text" name="courseCode" id="courseCode" placeholder="<?php echo $course_code;?>" maxlength="7" value="<?php echo $course_code;?>" required></td>
+  </tr>
+  <tr>
+    <td><label for="locationID">Location ID*</label></td>
+    <td colspan='2'><select name="locationID" class="input" id="locationID" onchange="clientValidation(this.form)" required>
+      <option value="DEF"selected="true" disabled="disabled">Please select a Location...</option>
+      <option value="EC">Engineering Center</option>
+      <option value="ODH">O-Dowd Hall</option>
+      <option value="DH">Dodge Hall</option>
+      <option value="MSC">Math and Science Center</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td><input type="hidden" name="ModifyClassForm" value="1"></td>
+    <td><input class="search" type="submit" value="Modify Class" style="cursor: pointer"></td>
+    <td><input class="search" type="reset" id="resetForm" style="cursor: pointer"></td>
+  </tr>
+</table>
+</form>
+</div>

@@ -1,0 +1,104 @@
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  width: 100%;
+  margin-top: 50px;
+  font-size: 36px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-top: 10px;
+  font-size: 36px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  border-collapse: collapse;
+  margin: 5px;
+  display: inline-block;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+th.cardHeader {
+  background: #33bdef;
+  border-radius: 5px 5px 0px 0px;
+  padding: 4px 4px;
+  color: white;
+}
+td.padding {
+    padding: 12px 6px;
+	text-align: left;
+}
+.viewButton{
+	background-color:#33bdef;
+	display:inline-block;
+	color:#ffffff;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+    border: 1px solid #33bdef;
+}
+.viewButton:hover {
+	background-color:#019ad2;
+    border: 1px solid #019ad2;
+    cursor: pointer;
+}
+.editButton{
+	background-color:#44c767;
+	display:inline-block;
+	color:#ffffff;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+    border: 1px solid #44c767;
+}
+.editButton:hover {
+	background-color:#228B22;
+    border: 1px solid #228B22;
+    cursor: pointer;
+}
+.deleteButton{
+	background-color:#f24537;
+	display:inline-block;
+	color:#ffffff;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+    border: 1px solid #f24537;
+}
+.deleteButton:hover {
+	background-color:#c62d1f;
+    border: 1px solid #c62d1f;
+    cursor: pointer;
+}
+.Modify{
+  text-align:center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: #eee;
+}
+.bodyFormat{
+  text-align: center;
+}
+

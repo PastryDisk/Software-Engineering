@@ -1,70 +1,68 @@
 <html>
-    <head>
-        <html lang="en"><head>
+<head>
+    <html lang="en"><head>
         <title>Geocheck</title>
         <meta name="author" content="Geocheck Team">
         <meta name="description" content="Login">
-            <style>
-                <?php
-                    include "./css/navbarP.css"; //Importing nav bar for professor css
-                    include "./css/View-Classes-P.css"; //Importing view classes for professor css
-                ?>
-            </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    <?php
+    include "./css/navbar.css";
+    include "./css/View-Classes-Pv2.css";
+    ?>
+</style>
     </head>
-    <body>
-        <?php
-            include "./html/navbarP.html"; //Importing nav bar for professor html page
-        ?>
+<body>
+<?php
+include "./html/navbarP.html";
+?>
+<div class="bodyFormat">
+            <?php
+            session_start();
+
+            // ProfID
+            $profID = $_SESSION['profID'];
+
+            //Database Information
+            $host = "geocheck.cbh1cn1j4qvl.us-east-2.rds.amazonaws.com";
+            $username = "admin";
+            $password = "GeoCheckSoftware1234";
+            $dbname = "mydb";
+            $port = 3306;
+            $conn = mysqli_connect($host, $username, $password, $dbname, $port);
 
 
-    <div class="main">
-        <div class="wrapperTable">
-            <header>My Classes</header>
-            <table style="width: 90%; height: 50vh; overflow: scroll; text-align: center">
-                <tr><th style="text-align: center">Class Code</th> <th style="text-align: center">CRN</th> <th style="text-align: center">Course Name</th> <th style="text-align: center">Location</th><th style="text-align: center">View</th> <th style="text-align: center">Edit</th> <th style="text-align: center">Delete Class</th></tr>
-                <br><br><br><br>
+            $query = "CALL viewCourseP($profID)";
+            $result = mysqli_query($conn, $query);
+            $counter = 0;
+            $row = $result->fetch_assoc();
 
-                <?php
-                session_start();
-
-                // ProfID
-                $profID = $_SESSION['profID'];
-
-                //Database Information
-                $host = "geocheck.cbh1cn1j4qvl.us-east-2.rds.amazonaws.com";
-                $username = "admin";
-                $password = "GeoCheckSoftware1234";
-                $dbname = "mydb";
-                $port = 3306;
-                $conn = mysqli_connect($host, $username, $password, $dbname, $port); //Establishing connection to database
-
-
-                $query = "CALL viewCourseP($profID)";
-                $result = mysqli_query($conn, $query);
-                $counter = 0;
-                $row = $result->fetch_assoc();
-
-                if ($result->num_rows > 0) {
-                    while ($counter < $result->num_rows) {
-                        echo "<tr>";
-                        echo " <td> " . $row["COURSE_CODE"] .       //Code that is use to
-                            " </td> <td> " . $row["COURSE_CRN"] .   //attach data from database
-                            " </td> <td> " . $row["COURSE_NAME"] .  //into tables inside html
-                            " </td> <td> " . $row["LOCATION_NAME"] .
-                            "</td>" .
-                            "<td><button type='button' class='viewButton'>View</button></td>
-                        <td><button type='button' class='editButton'>Edit</button></td>
-                        <td><button type='button' class='deleteButton'>Delete Class</button>
-                        </td>" .
-                        "</tr>";
-                        $counter++;
-                        $row = $result->fetch_assoc();
-                    }
-                } else {
-                    echo " <tr><td> No classes Found </td></tr>";
-                } ?>
-            </table>
-        </div>
-    </div>
-    </body>
-</html>
+            if ($result->num_rows > 0) {
+                echo " <br><br><br> ";
+                echo " <h2>My Classes</h2> ";
+                while ($counter < $result->num_rows) {
+                    echo " <table class='card'> ";
+                    echo " <tr><th class='cardHeader' colspan='3'> " . $row["COURSE_CODE"] . " </th></tr> ";
+                    echo " <tr><td class='padding'>Course Name: </td> ";
+                    echo " <td class='padding'> " . $row["COURSE_NAME"] . " </td></tr> ";
+                    echo " <tr><td class='padding'>CRN: </td> ";
+                    echo " <td class='padding'> " . $row["COURSE_CRN"] . " </td></tr> ";
+                    echo " <tr><td class='padding'>Location: </td> ";
+                    echo " <td class='padding'> " . $row["LOCATION_NAME"] . " </td></tr> ";
+                    echo " <tr><td colspan='2' class='Modify'><a href='./View-Attendance-Dates.php?id=".$row['COURSE_CRN']."'><button type='button' class='viewButton'>View</button></a>";
+                    echo " <a href='./Modify-Class-P.php?course_name=".$row["COURSE_NAME"] . "&crn=".$row['COURSE_CRN']."&code=".$row['COURSE_CODE']."&location=".$row['LOCATION_NAME']."'><button type='button' class='editButton'>Edit</button></a> ";
+                    echo " <a href='./Delete-Confirmation.php?id=".$row['COURSE_CRN']."'><button type='button' class='deleteButton'>Delete Class</button> </a></td> </tr>";
+                    echo " </table> ";
+                    $counter++;
+                    $row = $result->fetch_assoc();
+                }
+            } else {
+                echo "
+                      <div class='alert'>
+                        <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
+                        <strong>Information:</strong> You currently have no classes!
+                      </div>";
+            } ?>
+</div>
+</body>
+    </html>
