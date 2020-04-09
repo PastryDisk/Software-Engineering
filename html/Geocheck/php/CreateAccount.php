@@ -15,7 +15,7 @@ if (!$conn)
 
 /*
 
-       REGISTRATION PAGE CODE
+                REGISTRATION PAGE CODE
 
 */
 
@@ -47,8 +47,12 @@ if(isset($_POST['signupForm1'])) {
             if ((strlen($password) < 6) || (strlen($password) > 20)) // Checking password length
                 $error_msg = "Invalid password length";
 
-            if ($password != $passwordCheck) // Verifying password
-                $error_msg = "Passwords don't match";
+            if ($password != $passwordCheck) {// Verifying password
+                echo("<script LANGUAGE='JavaScript'>
+                        window.alert('Passwords don\'t match!');
+                        window.location.href='../login.php#signup';
+                        </script>");
+            }
 
             // CREATING ACCOUNT
             if ($error_msg == "") // if no errors thrown, continue
@@ -66,18 +70,29 @@ if(isset($_POST['signupForm1'])) {
 
                 // ADDING ACCOUNT INTO DATABASE
                 if (mysqli_real_query($conn, $q)) {
-                    header("Location: ../login.php"); // Redirecting to Login page
-                   // echo "<script type='text/javascript'>alert('You have registered successfully')
-                     //   window.location.href='login.php';</script>"; ALERT SYSTEM NEEDS FIXING
+                    echo ("<script LANGUAGE='JavaScript'>
+                            window.alert('Account Registered Successfully!');
+                            window.location.href='../login.php';
+                            </script>");
                 }
                 else // Error in database addition
-                    echo "<p>Error adding user.</p>";
+                    echo("<script LANGUAGE='JavaScript'>
+                        window.alert('Error adding account.');
+                        window.location.href='../login.php#signup';
+                        </script>");
 
             } else { // Error in validation
-                echo "<p>$error_msg</p>";
+                echo("<script LANGUAGE='JavaScript'>
+                        window.alert('$error_msg');
+                        window.location.href='../login.php#signup';
+                        </script>");
+
                 }
         } else { // Error in missing field data
-            echo "<p>$error_msg</p>";
+            echo("<script LANGUAGE='JavaScript'>
+                        window.alert('$error_msg');
+                        window.location.href='../login.php#signup';
+                        </script>");
             }
 }
 
@@ -89,8 +104,13 @@ if(isset($_POST['signupForm1'])) {
 */
 
 elseif (isset($_POST['loginForm1'])) {
-        $email = $_POST['emailLogin']; // user email
-        $password = $_POST['loginPassword']; // user password
+    $email = $_POST['emailLogin']; // user email
+    $password = $_POST['loginPassword']; // user password
+    $loginType = $_POST['loginType'];
+
+
+    if ($loginType == "student") {
+
         $query = "SELECT loginS('$email', '$password')";  // JAKOB MAGIC CODE
         $result = mysqli_real_query($conn, $query);       // THAT CHECKS LOGIN
         $result = mysqli_use_result($conn);               // INFO AND COMPARES TO
@@ -108,28 +128,40 @@ elseif (isset($_POST['loginForm1'])) {
 
             header("Location: ../View-Classes-S.php");
 
-        } else {
-            $query = "SELECT loginP('$email', '$password')";   // JAKOB MAGIC CODE
-            $result = mysqli_real_query($conn, $query);        // THAT CHECKS LOGIN
-            $result = mysqli_use_result($conn);                // INFO AND COMPARES TO
-            $row = mysqli_fetch_row($result);                  // DATABASE ENTRY TO
-            $row1 = mysqli_fetch_row($result);                 // COMPLETE LOGIN FOR PROFESSOR
-
-            if ($row[0] == 1) { // PROFESSOR LOGIN
-                $result1 = mysqli_query($conn, "SELECT PROF_ID FROM PROFESSOR WHERE PROF_EMAIL = '$email';"); // Grabbing profID from database
-                $temp = $result1->fetch_assoc();
-                $profID = $temp["PROF_ID"];
-
-                $_SESSION['logged_in'] = TRUE;
-                $_SESSION['email'] = $email;
-                $_SESSION['profID'] = $profID;
-
-                header("Location: ../View-Classes-P-Updated.php");
-
-            } else { // no account found error
-                echo $error_msg = "Account does not exist";
-                session_destroy();
-                }
-            }
         }
-?>
+        else { // no account found error
+            echo("<script LANGUAGE='JavaScript'>
+                        window.alert('Error Logging in! Check your credentials.');
+                        window.location.href='../login.php';
+                        </script>");
+            session_destroy();
+        }
+    } else if ($loginType == "professor") {
+
+        $query = "SELECT loginP('$email', '$password')";   // JAKOB MAGIC CODE
+        $result = mysqli_real_query($conn, $query);        // THAT CHECKS LOGIN
+        $result = mysqli_use_result($conn);                // INFO AND COMPARES TO
+        $row = mysqli_fetch_row($result);                  // DATABASE ENTRY TO
+        $row1 = mysqli_fetch_row($result);                 // COMPLETE LOGIN FOR PROFESSOR
+
+        if ($row[0] == 1) { // PROFESSOR LOGIN
+            $result1 = mysqli_query($conn, "SELECT PROF_ID FROM PROFESSOR WHERE PROF_EMAIL = '$email';"); // Grabbing profID from database
+            $temp = $result1->fetch_assoc();
+            $profID = $temp["PROF_ID"];
+
+            $_SESSION['logged_in'] = TRUE;
+            $_SESSION['email'] = $email;
+            $_SESSION['profID'] = $profID;
+
+            header("Location: ../View-Classes-P-Updated.php");
+
+        }
+        else { // no account found error
+            echo("<script LANGUAGE='JavaScript'>
+                        window.alert('Error Logging in! Check your credentials.');
+                        window.location.href='../login.php';
+                        </script>");
+            session_destroy();
+        }
+    }
+}

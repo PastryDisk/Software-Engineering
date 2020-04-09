@@ -1,83 +1,94 @@
 <html>
-    <body class="body">
+<body class="body">
 
-    <form id="loginForm" action="./php/CreateAccount.php" method="post">
-        <img class="format" src="./images/Geocheck1.png">
-        <br>
-        <br>
-        <label for="emailLogin">Email</label>
-        <br>
-        <input type="text" name="emailLogin" id="emailLogin" onchange="clientValidation(this.form)"> <!--Email enter location on login page-->
-        <br>
-        <label for="loginpassword">Password</label>
-        <br>
-        <input type="password" name="loginPassword" id="loginPassword" onchange="clientValidation(this.form)"> <!--Password enter location on login page-->
-        <br>
-        <br>
-        <input type="hidden" name="loginForm1" value="1">
-        <input class="login" type="submit" value="Log in" id="loginSubmit">
-        <br>
-    </form>
-    <br>
-    <a id="SignupContainer" href="#signup" class="link" OnClick="hideLogin()"><div class="SignUp">Don't have an account? | Sign Up Here</div></a> <!--Create account in footer from login pagee-->
-        <form id="signupForm" name="signupForm" action="./php/CreateAccount.php" method="post" style="display: none;">
-            <img class="format" src="./images/Geocheck1.png">
-            <br>
-            <br>
-            <label for="fName">First name:</label>
-            <br>
-            <input type="text" name="fName1" id="fName" onchange="clientValidation(this.form)"> <!--First Name entered here-->
-            <br>
-            <label for="lName">Last name:</label>
-            <br>
-            <input type="text" name="lName" id="lName" onchange="clientValidation(this.form)"> <!--Last name entered here-->
-            <br>
-            <label for="email">Email address:</label>
-            <br>
-            <input type="text" name="email" id="email" onchange="clientValidation(this.form)"> <!--Email address entered here-->
-            <br>
-            <label for="password1">Password</label>
-            <br>
-            <input type="password" name="password" id="password1" onchange="clientValidation(this.form)"> <!--Password entered here-->
-            <br>
-            <label for="password2">Verify Password</label>
-            <br>
-            <input type="password" name="password2" id="password2" onchange="clientValidation(this.form)"> <!--Password re-entered here-->
-            <br>
-            <label style="margin-bottom: 15px" for="AccountType">Choose an Account Type</label>
-            <br>
-            <select id="AccountType" name="AccountType" onchange="clientValidation(this.form)"> <!--Selection area to choose affliation-->
-                <option value="" disabled selected>Choose an Account Type</option>
-	            <option value="student">Student</option>
-                <option value="professor">Professor</option>
-            </select>
-            <br>
-            <br>
-            <input type="hidden" name="signupForm1" value="1">
-            <input class="login" type="submit" value="Submit" id="signupSubmit">
-            <br>
-            <br>
-            <input class="login" type="reset" id="resetsignup">
-            <br>
-        </form>
-        <br>
-    <a id="LoginContainer" style="display: none" href="#signup" class="link" OnClick="hideSignup()"><div class="SignUp">Already have an account? | Log in Here</div></a> <!--Login in footer from create account page-->
-    <script>
-        function hideLogin()
-        {
-          document.getElementById('signupForm').style = "display: inline-block;";
-          document.getElementById('SignupContainer').style = "display: none;";
-          document.getElementById('loginForm').style = "display: none;";
-          document.getElementById('LoginContainer').style = "display: inline-block;";
-        }
-        function hideSignup()
-        {
-          document.getElementById('signupForm').style = "display: none;";
-          document.getElementById('SignupContainer').style = "display: inline-block;";
-          document.getElementById('loginForm').style = "display: inline-block;";
-          document.getElementById('LoginContainer').style = "display: none;";
-        }
-    </script>
-    </div>
-    </body>
-</html>
+<form id="loginForm" action="./php/CreateAccount.php" method="post">
+<img class="format" src="./images/Geocheck1.png">
+<br>
+<br>
+<label for="emailLogin">Email*</label>
+<br>
+<input type="text" name="emailLogin" id="emailLogin" onchange="clientValidation(this.form)" required>
+<br>
+<label for="loginpassword">Password*</label>
+<br>
+<input type="password" name="loginPassword" id="loginPassword" onchange="clientValidation(this.form)" required>
+<br>
+<label style="margin-bottom: 15px" for="loginType">Login As</label>
+<br>
+<select id="loginType" name="loginType" onchange="clientValidation(this.form)" required>
+    <option value="student">Student</option>
+    <option value="professor">Professor</option>
+  </select>
+<br>
+<br>
+<input type="hidden" name="loginForm1" value="1">
+<input class="login" type="submit" value="Log in" id="loginSubmit">
+<br>
+</form>
+<br>
+<a id="SignupContainer" href="#signup" class="link" OnClick="hideLogin()"><div class="SignUp">Don't have an account? | Sign Up Here</div></a>
+<form id="signupForm" name="signupForm" action="./php/CreateAccount.php" method="post" style="display: none;">
+<img class="format" src="./images/Geocheck1.png">
+<br>
+<br>
+<label for="fName">First name*</label>
+<br>
+<input type="text" name="fName1" id="fName" onchange="clientValidation(this.form)" required>
+<br>
+<label for="lName">Last name*</label>
+<br>
+<input type="text" name="lName" id="lName" onchange="clientValidation(this.form)" required>
+<br>
+<label for="email">Email address*</label>
+<br>
+<input type="text" name="email" id="email" onchange="clientValidation(this.form)" required>
+<br>
+<label for="password1">Password*</label>
+<br>
+<input type="password" name="password" id="password1" onchange="clientValidation(this.form)" required>
+<br>
+<label for="password2">Verify Password*</label>
+<br>
+<input type="password" name="password2" id="password2" onchange="clientValidation(this.form)" required>
+<br>
+<label style="margin-bottom: 15px" for="AccountType">Choose an Account Type*</label>
+<br>
+<select id="AccountType" name="AccountType" onchange="clientValidation(this.form)" required>
+    <option value="" disabled selected>Choose an Account Type</option>
+	<option value="student">Student</option>
+    <option value="professor">Professor</option>
+  </select>
+<br>
+<br>
+<input type="hidden" name="signupForm1" value="1">
+<input class="login" type="submit" value="Submit" id="signupSubmit">
+<br>
+<br>
+<input class="login" type="reset" id="resetsignup">
+<br>
+</form>
+<br>
+<a id="LoginContainer" style="display: none" href="#signup" class="link" OnClick="hideSignup()"><div class="SignUp">Already have an account? | Log in Here</div></a>
+<script>
+function hideLogin()
+{
+  document.getElementById('signupForm').style = "display: inline-block;";
+  document.getElementById('SignupContainer').style = "display: none;";
+  document.getElementById('loginForm').style = "display: none;";
+  document.getElementById('LoginContainer').style = "display: inline-block;";
+}
+function hideSignup()
+{
+  document.getElementById('signupForm').style = "display: none;";
+  document.getElementById('SignupContainer').style = "display: inline-block;";
+  document.getElementById('loginForm').style = "display: inline-block;";
+  document.getElementById('LoginContainer').style = "display: none;";
+}
+</script>
+<div>
+
+</div></div>
+        
+
+
+</body></html>

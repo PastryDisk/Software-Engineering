@@ -3,11 +3,7 @@ session_start();
 $email = $_SESSION['email'];
 $profID = $_SESSION['profID'];
 if(isset($_POST['createCourse'])) {
-    /*$error_msg = "";  // output message to user and also our check for errors
-    foreach ($_POST as $key => $value) { //might need editing of key/value variables
-        if (empty($_POST[$key]))
-            $error_msg = "All fields must be filled in!";
-    }*/
+
     if(isset($_POST['courseID']) && isset($_POST['courseCode']) &&  isset($_POST['courseName']) && isset($_POST['courseStartDate1']) && isset($_POST['Duration']) && isset($_POST['courseLocation'])) {
         $courseID = $_POST['courseID'];
         $courseCode = $_POST['courseCode']; // CRN
@@ -15,6 +11,8 @@ if(isset($_POST['createCourse'])) {
         $startDate1 = $_POST['courseStartDate1'];
         $duration = $_POST['Duration'];
         $location = $_POST['courseLocation'];
+        $error_msg = "";
+
         switch($location)
         {
             case "EC":
@@ -26,56 +24,79 @@ if(isset($_POST['createCourse'])) {
             case "DH":
                 $location = 3;
                 break;
-            case "TST":
+            case "MSC":
                 $location = 4;
                 break;
         }
+
         $host = "geocheck.cbh1cn1j4qvl.us-east-2.rds.amazonaws.com";
         $username = "admin";
         $password = "GeoCheckSoftware1234";
         $dbname = "mydb";
         $port = 3306;
         $conn = mysqli_connect($host, $username, $password, $dbname, $port);
+
         if (!$conn) {
             die("Database error: " . mysqli_connect_error());
         }
-      // $query1 = "CALL createCourse($courseCode,  '$courseID', '$courseName', $location, $profID)";
-        //$query2 = "CALL attendanceLoop($courseCode, '$startDate1', $duration)";
-        if (isset($_POST['courseStartDate2'])) {
+
+        if ($_POST['courseStartDate2'] != "") {
             $startDate2 = $_POST['courseStartDate2'];
-            //$query3 = "CALL attendanceLoop($courseCode, '$startDate2', $duration)";
+
+            if (($startDate2 == $startDate1) == 1)
+                $error_msg = "Start dates can't be the same!";
         }
-        if (isset($_POST['courseStartDate3'])) {
+
+        if ($_POST['courseStartDate3'] != "") {
             $startDate3 = $_POST['courseStartDate3'];
-            //$query4 = "CALL attendanceLoop($courseCode, '$startDate3', $duration)";
+
+            if (($startDate3 == $startDate1) == 1 || ($startDate3 == $startDate2) == 1)
+                $error_msg = "Start dates can't be the same!";
         }
-       if($_POST['courseStartDate2'] == "" && $_POST['courseStartDate3'] == "")
+
+       if($_POST['courseStartDate2'] == "" && $_POST['courseStartDate3'] == "" &&  $error_msg == "")
        {
            $query = "CALL createCourse($courseCode, '$courseID', '$courseName', '$startDate1', $duration, $location, $profID)";
            if(mysqli_real_query($conn, $query))
            {
-               header("Location: ../View-Classes-P.php");
+               header("Location: ../View-Classes-P-Updated.php");
+           } else{
+               echo("<script LANGUAGE='JavaScript'>
+                        window.alert('CRN Already Taken!');
+                        window.location.href='../CreateClass.php';
+                        </script>");
            }
-           else echo "<p> Something went wrong 1 </p>";
        }
-       elseif($_POST['courseStartDate3'] == "")
+       else if($_POST['courseStartDate3'] == "" && $error_msg == "")
        {
            $query = "CALL createCourse2($courseCode, '$courseID', '$courseName', '$startDate1', '$startDate2', $duration, $location, $profID)";
            if(mysqli_real_query($conn, $query))
            {
-               header("Location: ../View-Classes-P.php");
+               header("Location: ../View-Classes-P-Updated.php");
+           } else{
+               echo("<script LANGUAGE='JavaScript'>
+                        window.alert('CRN Already Taken!');
+                        window.location.href='../CreateClass.php';
+                        </script>");
            }
-           else echo "<p> Something went wrong 2 </p>";
        }
-       else{
+       else if ($error_msg == "") {
            $query = "CALL createCourse3($courseCode, '$courseID', '$courseName', '$startDate1', '$startDate2', '$startDate3', $duration, $location, $profID)";
            if(mysqli_real_query($conn, $query))
            {
-               header("Location: ../View-Classes-P.php");
+               header("Location: ../View-Classes-P-Updated.php");
+           } else{
+               echo("<script LANGUAGE='JavaScript'>
+                        window.alert('CRN Already Taken!');
+                        window.location.href='../CreateClass.php';
+                        </script>");
            }
-           else echo "<p> Something went wrong 3 </p>";
        }
-
+       else {
+           echo("<script LANGUAGE='JavaScript'>
+                        window.alert('Two or more start dates can\'t be the same');
+                        window.location.href='../CreateClass.php';
+                        </script>");
+       }
     }
-    else echo "<p> All fields must be filled in! </p>"; //missing field data
 }

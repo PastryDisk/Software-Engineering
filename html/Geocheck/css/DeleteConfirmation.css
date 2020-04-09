@@ -1,0 +1,50 @@
+.confirmBox {
+  margin-top: 70px;
+  font-family: Sans-serif;
+  max-width: 320px;
+  min-height: 140px;
+  background: white;
+  padding: 20px;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+}
+.deleteBtn {
+    background-color: #f24537;
+    display: inline-block;
+    color: white;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    border: 1px solid #f24537;
+    border-radius: 2px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.deleteBtn:hover {
+    background-color: #c62d1f;
+    border: 1px solid #c62d1f;
+    transition: 0.3s;
+}
+.cancelBtn {
+    background-color: white;
+    display: inline-block;
+    float: right;
+    color: #f24537;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 14px;
+    text-decoration: none;
+    border: 1px solid #D3D3D3;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.cancelBtn:hover {
+    background-color: #F8F8F8;
+    border: 1px solid #D3D3D3;
+    transition: 0.3s;
+}

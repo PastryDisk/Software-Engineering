@@ -8,6 +8,17 @@ header{
     margin-top: 100px;
     font-size: 32px;
 }
+#homePage{
+  display: block;
+  float: none;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 170px;	
+}
+#homePage:hover {
+  background: inherit;
+}
 .navbar {
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.9);

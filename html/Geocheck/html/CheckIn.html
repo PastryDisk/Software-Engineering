@@ -1,0 +1,58 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function $(x) {
+            return document.getElementById(x);
+        }
+        $(document).ready(function()
+        {
+           if(navigator.geolocation)
+           {
+               navigator.geolocation.getCurrentPosition(showLocation);
+           }else {
+               $('#location').html('Geolocation is not supported by this browser.');
+           }
+        });
+        function showLocation(position)
+        {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            $('#location').html(position);
+        }
+    </script>
+</head>
+<body>
+<p><span class="label">Your Location:</span> <span id="location"></span></p>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+}
+</script>
+
+</body>
+</html>
